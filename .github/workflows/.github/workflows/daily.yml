@@ -1,1 +1,19 @@
+name: Akaryakit Botu Calistir
+on:
+  schedule:
+    - cron: '30 18 * * *' # Her gün Türkiye saatiyle 21:30'da çalışır (UTC 18:30)
+  workflow_dispatch: # Manuel çalıştırmak için buton ekler
 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Python Kur
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - name: Kütüphaneleri Yukle
+        run: pip install requests
+      - name: Botu Calistir
+        run: python bot.py
